@@ -2,18 +2,18 @@ import 'dart:io';
 import 'package:RegexpFolderFinder/RegexpFileFinder.dart' as RegexpFolderFinder;
 import 'package:test/test.dart';
 
-final String defaultTestPath = Directory.current.path + '\\test_directory';
+final String defaultTestPath = Directory.current.path + '/test_directory';
 
 void main() {
   group('directory browser', () {
-    final String testFolderPath = defaultTestPath + '\\test1';
+    final String testFolderPath = defaultTestPath + '/test1';
     final testDirectory = Directory(defaultTestPath);
 
     setUp(() {
       testDirectory.createSync();
       Directory(testFolderPath).createSync();
-      File(defaultTestPath + '\\rootFile.txt').createSync();
-      File(testFolderPath + '\\recursiveFile.txt').createSync();
+      File(defaultTestPath + '/rootFile.txt').createSync();
+      File(testFolderPath + '/recursiveFile.txt').createSync();
     });
 
     tearDown(() {
@@ -29,7 +29,8 @@ void main() {
           Directory(defaultTestPath));
       expect(files.length, 2);
       expect(getResultingPath(files.elementAt(0)), 'rootFile.txt');
-      expect(getResultingPath(files.elementAt(1)), 'test1\\recursiveFile.txt');
+      expect(getResultingPath(files.elementAt(1)),
+          'test1${Platform.pathSeparator}recursiveFile.txt');
     });
   });
 }
