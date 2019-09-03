@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:RegexpFolderFinder/RegexpFileFinder.dart' as RegexpFolderFinder;
+import 'package:RegexpFolderFinder/utils.dart' as RegexpFolderFinder;
 import 'package:test/test.dart';
 
 final String defaultTestPath = Directory.current.path + '/test_directory';
