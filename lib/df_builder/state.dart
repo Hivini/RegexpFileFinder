@@ -26,7 +26,7 @@ class State {
   ///
   /// Throws an [ArgumentError] if the symbol given does not exists.
   State getStateFromSymbol(String symbol) {
-    if (_transitions[symbol] != null) {
+    if (_transitions[symbol] == null) {
       throw ArgumentError("The transition to that symbol does not exist");
     }
     return _transitions[symbol];
