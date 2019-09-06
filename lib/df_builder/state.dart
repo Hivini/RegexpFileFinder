@@ -2,7 +2,8 @@
 ///
 /// By default is not an end state.
 class State {
-  /// Transitions defined by the symbol, in this case, a character.
+  static final epsilon = String.fromCharCode(949);
+  /// Transitions defined by the symbol expecting a single character.
   Map<String, State> _transitions;
 
   /// Defines if this instance of the [State] is an end state.
@@ -24,7 +25,7 @@ class State {
 
   /// Returns the State of the transition given a symbol.
   ///
-  /// Throws an [ArgumentError] if the symbol given does not exists.
+  /// Throws an [ArgumentError] if the symbol given does not exist.
   State getStateFromSymbol(String symbol) {
     if (_transitions[symbol] == null) {
       throw ArgumentError("The transition to that symbol does not exist");

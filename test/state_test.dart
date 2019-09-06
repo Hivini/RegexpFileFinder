@@ -16,11 +16,13 @@ void main() {
       });
 
       test('throws error if not single character key symbol is entered', () {
-        expect(() => rootState.addTransition('ab', nextState), throwsA(TypeMatcher<ArgumentError>()));
+        expect(() => rootState.addTransition('ab', nextState),
+            throwsA(TypeMatcher<ArgumentError>()));
       });
 
       test('throws error if thekey does not exist on the transitions', () {
-        expect(() => rootState.getStateFromSymbol('ab'), throwsA(TypeMatcher<ArgumentError>()));
+        expect(() => rootState.getStateFromSymbol('ab'),
+            throwsA(TypeMatcher<ArgumentError>()));
       });
     });
   });
