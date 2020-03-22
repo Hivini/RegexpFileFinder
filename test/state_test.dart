@@ -3,10 +3,10 @@ import 'package:test/test.dart';
 
 void main() {
   group(State, () {
-    State rootState = State();
+    State rootState = State('rt');
 
     group('from transitions', () {
-      State nextState = State();
+      State nextState = State('ns');
 
       test('adds new entries with single characters as key', () {
         rootState.addTransition('a', nextState);

@@ -28,14 +28,27 @@ class NonDeterministicAutomaton {
       var char = getChar(regexp, i);
       if (char == '(') {
         String exp = getParenthesisExpression(regexp, i + 1);
-        var newNda = process(exp);
-        if (nda.regexp == '') {
-          nda = newNda;
+        var length = i + exp.length + 1;
+        var newNda;
+        if (length < regexp.length-1 && getChar(regexp, length + 1) == '*') {
+          newNda = doOperation(process(exp), '*');
+          // Skip the expression after the ) and the *.
+          if (nda.regexp == '') {
+            nda = newNda;
+          } else {
+            nda = doOperation(nda, null, newNda);
+          }
+          i += exp.length + 2;
         } else {
-          doOperation(nda, null, newNda);
+          newNda = process(exp);
+          if (nda.regexp == '') {
+            nda = newNda;
+          } else {
+            doOperation(nda, null, newNda);
+          }
+          // Continue the expression after the ')'.
+          i += exp.length + 1;
         }
-        // Continue the expression after the ')'.
-        i += exp.length + 1;
       } else if (char == '*') {
         nda = doOperation(nda, '*');
       } else if (char == '+') {

@@ -19,6 +19,16 @@ Future<List<String>> getAllFilesFromDirectory(Directory directory) async {
   return filePaths;
 }
 
+Future<Map<String, String>> getFiles(Directory directory) async {
+  var paths = await getAllFilesFromDirectory(directory);
+  var files = Map<String, String>();
+  for (var path in paths) {
+    var file = path.split(Platform.pathSeparator).last;
+    files[path] = file;
+  }
+  return files;
+}
+
 String getChar(String word, int index) =>
     String.fromCharCode(word.codeUnitAt(index));
 

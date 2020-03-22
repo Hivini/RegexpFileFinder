@@ -45,4 +45,11 @@ class State {
   Iterable<MapEntry<String, List<State>>> getTransitions() {
     return _transitions.entries;
   }
+
+  @override
+  String toString() {
+    return '$name';
+  }
+
+
 }
